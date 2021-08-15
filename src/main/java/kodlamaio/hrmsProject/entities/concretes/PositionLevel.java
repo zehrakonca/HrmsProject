@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,22 +16,18 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="sectors")
+@Table(name ="position_levels")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","jobs"})
-public class Sector {
-	
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","jobAdvertisements"})
+public class PositionLevel {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="sector_id")
-	private int sectorId;
+	@Column(name="position_level_id")
+	private int levelId;
 	
-	@Column(name="sector_name")
-	private String sector;
+	@Column(name="levelname")
+	private String positionlevelName;
 	
-	@OneToMany(mappedBy = "sector")
-	private List<Job> jobs;
-	
-	
+	@OneToMany(mappedBy = "positionLevel")
+	private List<JobAdvertisement> jobAdvertisements;
 }

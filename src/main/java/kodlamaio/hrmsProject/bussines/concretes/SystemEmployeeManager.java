@@ -82,7 +82,7 @@ public class SystemEmployeeManager implements SystemEmployeeService {
 
 	@Override
 	public Result updateEmployerData(Employer employer) {
-		employerDao.getById(employer.getId());
+		employerDao.getById(employer.getEmployerId());
 		//employer.setStatu(1);
 		employerDao.save(employer);
 		return new SuccessResult("İşveren bilgisi güncellendi.");

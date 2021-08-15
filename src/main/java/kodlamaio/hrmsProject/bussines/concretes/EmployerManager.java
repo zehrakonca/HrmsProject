@@ -36,7 +36,7 @@ public class EmployerManager implements EmployerService {
 			return new ErrorResult("Kayıt için eksik değer girildi, kontrol edip tekrar deneyin.");
 		}
 		if (!MailValidation.checkEmail(employer.getCompanyMail())) {
-			return new ErrorResult("Email hatalı."+ employer.getCompany_name());
+			return new ErrorResult("Email hatalı."+ employer.getCompanyName());
 		}
 		if (!MailValidation.checkEmailDomain(employer.getWeb_site_name(), employer.getCompanyMail())) {
 			return new ErrorResult("Email ve girilen web adresi uyumlu değil");
@@ -56,7 +56,7 @@ public class EmployerManager implements EmployerService {
 	}
 	private boolean dataControl (Employer employer)
 	{
-		if(employer.getCompanyMail() == null || employer.getCompanyMail().isBlank() || employer.getPassword()==null ||employer.getPassword() .isBlank() || employer.getPassword_rep() == null ||  employer.getPassword_rep().isBlank() || employer.getCompany_name() ==null ||employer.getCompany_name().isBlank() || employer.getWeb_site_name()==null ||employer.getWeb_site_name().isBlank() || employer.getTelephone() ==null || employer.getTelephone().isBlank()) {
+		if(employer.getCompanyMail() == null || employer.getCompanyMail().isBlank() || employer.getPassword()==null ||employer.getPassword() .isBlank() || employer.getPassword_rep() == null ||  employer.getPassword_rep().isBlank() || employer.getCompanyName() ==null ||employer.getCompanyName().isBlank() || employer.getWeb_site_name()==null ||employer.getWeb_site_name().isBlank() || employer.getTelephone() ==null || employer.getTelephone().isBlank()) {
 			return false;
 		}
 		else {
