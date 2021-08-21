@@ -3,8 +3,6 @@ package kodlamaio.hrmsProject.core.validations.concretes;
 //import java.rmi.RemoteException;
 //import java.util.Locale;
 
-import kodlamaio.hrmsProject.core.utilities.results.Result;
-import kodlamaio.hrmsProject.core.utilities.results.SuccessResult;
 
 //import java.util.Locale;
 
@@ -16,10 +14,10 @@ import kodlamaio.hrmsProject.core.validations.abstracts.IdentityValidationServic
 public class IdentityValidation implements IdentityValidationService{
 
 	@Override
-	public Result validate(String identityNumber) {
-		return new SuccessResult("Kimlik numarası doğrulanmıştır.");
+	public boolean validate(String identityNumber) {
+		return true;
 	}
-	
+
 	/*@Override
 	public boolean isIdentityTrue(JobSeeker jobSeeker)
 	{
