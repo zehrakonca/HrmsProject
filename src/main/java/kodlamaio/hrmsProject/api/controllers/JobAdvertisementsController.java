@@ -29,7 +29,7 @@ public class JobAdvertisementsController {
 	}
 	
 	@PostMapping("/add")
-	public  Result addResult (@RequestBody JobAdvertisement jobAdvertisement)
+	public  Result add (@RequestBody JobAdvertisement jobAdvertisement)
 	{
 		jobAdvertisement.setReleaseDate(new Date());
 		return this.jobAdvertisementService.add(jobAdvertisement);

@@ -10,6 +10,6 @@ public interface SchoolService {
 	Result add (School school);
 	DataResult<School> getById(int schoolId);
 	DataResult<List<School>>getByJobSeekerId(int jobSeekerId);
-	
+	 DataResult<List<School>> getAll();
 
 }

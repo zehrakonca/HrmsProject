@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,7 @@ import kodlamaio.hrmsProject.bussines.abstracts.JobSeekerService;
 import kodlamaio.hrmsProject.core.utilities.results.DataResult;
 import kodlamaio.hrmsProject.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrmsProject.entities.concretes.JobSeeker;
+import kodlamaio.hrmsProject.entities.dtos.JobSeekerDto;
 
 @RestController
 @RequestMapping("/api/jobseekers")
@@ -45,6 +47,18 @@ public class JobSeekersController {
 	public ResponseEntity<?> add(@Valid @RequestBody JobSeeker jobSeeker) {
 		return ResponseEntity.ok(this.jobSeekerService.add(jobSeeker));
 	}
+	
+	@GetMapping("getCv")
+	public ResponseEntity<?> getCv(@RequestParam int jobSeekerId)
+	{
+		return ResponseEntity.ok(this.jobSeekerService.getJobSeekerCv(jobSeekerId));
+	}
+	
+	 @GetMapping("/getCandidateDto")
+	 public DataResult<List<JobSeekerDto>> getJobSeekerDto()
+	 {
+	     return this.jobSeekerService.getJobSeekerDto();
+	 }
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
