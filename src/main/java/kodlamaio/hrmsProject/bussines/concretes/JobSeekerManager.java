@@ -1,63 +1,37 @@
 package kodlamaio.hrmsProject.bussines.concretes;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import kodlamaio.hrmsProject.bussines.abstracts.CoverLetterService;
-import kodlamaio.hrmsProject.bussines.abstracts.ImageService;
-import kodlamaio.hrmsProject.bussines.abstracts.JobCompetencyService;
-import kodlamaio.hrmsProject.bussines.abstracts.JobExperienceService;
 import kodlamaio.hrmsProject.bussines.abstracts.JobSeekerService;
-import kodlamaio.hrmsProject.bussines.abstracts.LanguageService;
-import kodlamaio.hrmsProject.bussines.abstracts.SchoolService;
-import kodlamaio.hrmsProject.bussines.abstracts.SocialMediaAccountService;
 import kodlamaio.hrmsProject.core.utilities.results.DataResult;
 import kodlamaio.hrmsProject.core.utilities.results.ErrorResult;
 import kodlamaio.hrmsProject.core.utilities.results.Result;
 import kodlamaio.hrmsProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrmsProject.core.utilities.results.SuccessResult;
-import kodlamaio.hrmsProject.core.validations.abstracts.IdentityValidationService;
 import kodlamaio.hrmsProject.core.validations.concretes.MailValidation;
 import kodlamaio.hrmsProject.dataAccess.abstracts.JobSeekerDao;
 import kodlamaio.hrmsProject.entities.concretes.JobSeeker;
 import kodlamaio.hrmsProject.entities.dtos.CvDto;
-import kodlamaio.hrmsProject.entities.dtos.JobSeekerDto;
+import kodlamaio.hrmsProject.entities.dtos.converter.Converter;
 
 @Service
 public class JobSeekerManager implements JobSeekerService {
-	private JobSeekerDao jobSeekerDao;
-	private IdentityValidationService identityValidationService;
-	private CoverLetterService coverLetterService;
-	private ImageService imageService;
-	private SchoolService schoolService;
-	private JobExperienceService jobExperienceService;
-	private JobCompetencyService jobCompetencyService;
-	private LanguageService languageService;
-	private SocialMediaAccountService socialMediaAccountService;
 	
+	private final JobSeekerDao jobSeekerDao;
+	private final Converter converter;
 	
 	@Autowired
-	public JobSeekerManager(IdentityValidationService identityValidationService,
-			                CoverLetterService coverLetterService,
-			                ImageService imageService, 
-			                SchoolService schoolService,
-			                JobExperienceService jobExperienceService,
-			                JobCompetencyService jobCompetencyService, 
-			                LanguageService languageService,
-			                SocialMediaAccountService socialMediaAccountService) 
-	{
+	public JobSeekerManager(JobSeekerDao jobSeekerDao, Converter converter) {
 		super();
-		this.identityValidationService = identityValidationService;
-		this.coverLetterService = coverLetterService;
-		this.imageService = imageService;
-		this.schoolService = schoolService;
-		this.jobExperienceService = jobExperienceService;
-		this.jobCompetencyService = jobCompetencyService;
-		this.languageService = languageService;
-		this.socialMediaAccountService = socialMediaAccountService;
+		this.jobSeekerDao = jobSeekerDao;
+		this.converter = converter;
 	}
+
+	
+	
 
 	@Override
 	public DataResult<List<JobSeeker>> getAll() {
@@ -82,10 +56,10 @@ public class JobSeekerManager implements JobSeekerService {
 			else if (!jobSeeker.getPassword().equals(jobSeeker.getPassword_rep())) {
 				return new ErrorResult("Girilen şifreler birbiriyle eşleşmiyor.");
 			}
-			else if(!identityValidationService.validate(jobSeeker.getNationalIdentity()))
-			{
-				return new ErrorResult("Girilen kimlik numarası geçersizdir.");
-			}
+//			else if(!identityValidationService.validate(jobSeeker.getNationalIdentity()))
+//			{
+//				return new ErrorResult("Girilen kimlik numarası geçersizdir.");
+//			}
 			else {
 				jobSeeker.setStatu(2);
 				jobSeeker.setUsertype(2);
@@ -93,6 +67,32 @@ public class JobSeekerManager implements JobSeekerService {
 				return new SuccessResult("Üyelik başarılı bir şekilde oluşturuldu. Email onayınız yapıldıktan sonra sistemi kullanmaya başlayabilirsiniz.");
 			}
 	}
+	
+	@Override
+	public DataResult<JobSeeker> getById(int jobSeekerId) {
+		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.getById(jobSeekerId));
+	}
+
+	@Override
+	public DataResult<JobSeeker> getByIdentityNumber(String identityNumber) {
+		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.findByNationalIdentity(identityNumber));
+	}
+
+	@Override
+	public DataResult<JobSeeker> getByEmail(String email) {
+		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.findByEmail(email));
+	}
+
+	@Override
+	public DataResult<List<CvDto>> getAllCvByJobSeekerId(int jobSeekerId) {
+		return new SuccessDataResult<List<CvDto>>(this.jobSeekerDao.findById(jobSeekerId).stream().map(converter::convertToCv).collect(Collectors.toList()), "data listelendi");
+	}
+
+	@Override
+	public DataResult<List<CvDto>> getAllCv() {
+		return new SuccessDataResult<List<CvDto>>(this.jobSeekerDao.findAll().stream().map(converter::convertToCv).collect(Collectors.toList()),"data listelendi.");
+				}
+	
 	
 	private boolean dataControl(JobSeeker jobSeeker)
 	{
@@ -111,39 +111,5 @@ public class JobSeekerManager implements JobSeekerService {
 		}
 	}
 
-	@Override
-	public DataResult<JobSeeker> getById(int jobSeekerId) {
-		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.getById(jobSeekerId));
-	}
-
-	@Override
-	public DataResult<JobSeeker> getByIdentityNumber(String identityNumber) {
-		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.findByNationalIdentity(identityNumber));
-	}
-
-
-	@Override
-	public DataResult<List<JobSeekerDto>> getJobSeekerDto() {
-		return new SuccessDataResult<List<JobSeekerDto>>(this.jobSeekerDao.getDetail());
-	}
-
-	@Override
-	public DataResult<JobSeeker> getByEmail(String email) {
-		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.findByEmail(email));
-	}
-	
-	@Override
-	public DataResult<CvDto> getJobSeekerCv(int jobSeekerId) {
-		CvDto cv = new CvDto();
-		cv.setJobSeeker(this.getById(jobSeekerId).getData());
-		cv.setImage(this.imageService.getByJobSeekerId(jobSeekerId).getData());
-		cv.setSchools(this.schoolService.getByJobSeekerId(jobSeekerId).getData());
-		cv.setJobExperiences(this.jobExperienceService.getByJobSeekerId(jobSeekerId).getData());
-		cv.setJobCompetencies(this.jobCompetencyService.getByJobSeekerId(jobSeekerId).getData());
-		cv.setSocialMediaAccounts(this.socialMediaAccountService.getByJobSeekerId(jobSeekerId).getData());
-		cv.setLanguages(this.languageService.getByJobSeekerId(jobSeekerId).getData());
-		cv.setCoverLetter(this.coverLetterService.getByJobSeekerId(jobSeekerId).getData());
-		return new SuccessDataResult<CvDto>(cv);
-		}
 	
 }

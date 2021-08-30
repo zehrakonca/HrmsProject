@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="image_id")
 	private int id;
 	
 	@NotBlank
@@ -40,6 +40,6 @@ public class Image {
 	private LocalDate createdDate = LocalDate.now();
 	
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker;
 }

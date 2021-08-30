@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+//import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -27,57 +27,67 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@PrimaryKeyJoinColumn(name="id", referencedColumnName ="id")
+//@PrimaryKeyJoinColumn(name="id", referencedColumnName ="id")
 public class JobSeeker {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="job_seeker_id")
 	private int id;
 	
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="firstname")
 	private String firstname;
 	
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="lastname")
 	private String lastname;
 	
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="national_identity")
 	private String nationalIdentity;
 	
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="year_a_birth")
 	private int date;
 	
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="telephone")
 	private String telephone;
 	
 	@Email
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="mail_address")
 	private String email;
 	
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="password")
 	private String password;
 	
 	@NotBlank
 	@NotNull
+	@JsonIgnore
 	@Column(name="password_rep")
 	private String password_rep;
 	
+	@JsonIgnore
 	@Column(name="usertype")
 	private int usertype;
 	
+	@JsonIgnore
 	@Column(name="statu")
 	private int statu;
 	

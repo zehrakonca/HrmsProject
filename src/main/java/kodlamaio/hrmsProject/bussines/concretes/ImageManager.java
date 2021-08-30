@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrmsProject.bussines.abstracts.ImageService;
-import kodlamaio.hrmsProject.core.utilities.ImageUploadService;
+import kodlamaio.hrmsProject.core.utilities.imageUpload.ImageUploadService;
 import kodlamaio.hrmsProject.core.utilities.results.DataResult;
 import kodlamaio.hrmsProject.core.utilities.results.Result;
 import kodlamaio.hrmsProject.core.utilities.results.SuccessDataResult;
@@ -26,13 +26,15 @@ public class ImageManager implements ImageService{
 		this.imageUploadService = imageUploadService;
 	}
 
+
 	private ImageDao imageDao;
 	private ImageUploadService imageUploadService;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Result add(Image image, MultipartFile multipartFile) {
-		@SuppressWarnings("unchecked")
-		Map<String, String> imageUpload = this.imageUploadService.uploadImageFile(multipartFile).getData();
+		
+		Map<String, String> imageUpload = this.imageUploadService.uploadImage(multipartFile).getData();
 		image.setUrl(imageUpload.get("url"));
 		this.imageDao.save(image);
 		return new SuccessResult("resim başarıyla eklendi.");
@@ -47,5 +49,17 @@ public class ImageManager implements ImageService{
 	public DataResult<List<Image>> getAll() {
         return new SuccessDataResult<List<Image>>(this.imageDao.findAll());
     }
+
+	@Override
+	public Result delete(int imageId) {
+		this.imageDao.deleteById(imageId);
+		return new SuccessResult("fotoğraf silindi.");
+	}
+
+	@Override
+	public Result update(Image image) {
+		this.imageDao.save(image);
+		return new SuccessResult("fotoğraf güncellendi.");
+	}
 
 }

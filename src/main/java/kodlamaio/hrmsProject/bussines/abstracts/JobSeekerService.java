@@ -6,7 +6,7 @@ import kodlamaio.hrmsProject.core.utilities.results.DataResult;
 import kodlamaio.hrmsProject.core.utilities.results.Result;
 import kodlamaio.hrmsProject.entities.concretes.JobSeeker;
 import kodlamaio.hrmsProject.entities.dtos.CvDto;
-import kodlamaio.hrmsProject.entities.dtos.JobSeekerDto;
+//import kodlamaio.hrmsProject.entities.dtos.JobSeekerDto;
 
 public interface JobSeekerService {
 	DataResult<List<JobSeeker>> getAll();
@@ -19,7 +19,7 @@ public interface JobSeekerService {
 	
 	DataResult<JobSeeker> getByEmail(String email);
 	
-	DataResult<List<JobSeekerDto>> getJobSeekerDto();
+	DataResult<List<CvDto>> getAllCvByJobSeekerId(int jobSeekerId);
 	
-	DataResult<CvDto> getJobSeekerCv(int jobSeekerId);
+	DataResult<List<CvDto>> getAllCv();
 }

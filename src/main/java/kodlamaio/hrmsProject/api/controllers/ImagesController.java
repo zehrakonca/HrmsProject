@@ -30,9 +30,9 @@ public class ImagesController {
 	}
 	
 	@PostMapping("add")
-	public Result add (@RequestParam(value="id") int id, @RequestParam(value="imageFile") MultipartFile imageFile)
+	public Result add (@RequestParam(value="jobSeekerId") int jobSeekerId, @RequestParam(value="imageFile") MultipartFile imageFile)
 	{
-		JobSeeker jobSeeker = this.jobSeekerService.getById(id).getData();
+		JobSeeker jobSeeker = this.jobSeekerService.getById(jobSeekerId).getData();
 		Image image = new Image();
 		image.setJobSeeker(jobSeeker);
 		return this.imageService.add(image, imageFile);

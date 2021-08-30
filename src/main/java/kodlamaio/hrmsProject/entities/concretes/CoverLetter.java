@@ -24,13 +24,15 @@ public class CoverLetter {
 	@Column(name="coverLetter_id")
 	private int coverLetterId;
 	
+	@ManyToOne()
+	@JoinColumn(name="job_seeker_id")
+	private JobSeeker jobSeeker;
+	
 	@Column(name="coverLetter_name")
 	private String coverLetterName;
 	
 	@Column(name="cover_letter")
 	private String coverLetter;
 	
-	@ManyToOne()
-	@JoinColumn(name="id")
-	private JobSeeker jobSeeker;
+	
 }

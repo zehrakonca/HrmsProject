@@ -31,7 +31,7 @@ public class SocialMediaAccount {
 	private String accountLink;
 	
 	@ManyToOne()
-	@JoinColumn(name="id")
+	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker;
 	
 }

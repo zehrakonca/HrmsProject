@@ -35,7 +35,7 @@ public class SchoolManager  implements SchoolService{
 
 	@Override
 	public DataResult<List<School>> getByJobSeekerId(int jobSeekerId) {
-		return new SuccessDataResult<List<School>>(this.schoolDao.getbByJobSeekerId(jobSeekerId));
+		return new SuccessDataResult<List<School>>(this.schoolDao.getByJobSeekerId(jobSeekerId));
 	}
 
 	@Override

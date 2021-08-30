@@ -28,7 +28,7 @@ public class JobCompetency {
 	private String competencyName;
 	
 	@ManyToOne()
-	@JoinColumn(name="id")
+	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker;
 	
 }

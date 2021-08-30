@@ -44,4 +44,10 @@ public class CoverLettersController {
 		return this.coverLetterService.getByJobSeekerId(jobSeekerId);
 	}
 	
+	@GetMapping("getById")
+	public DataResult<CoverLetter> getById(@RequestParam int coverLetterId)
+	{
+		return this.coverLetterService.getById(coverLetterId);
+	}
+	
 }

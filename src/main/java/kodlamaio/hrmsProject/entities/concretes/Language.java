@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Language {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="language_id")
 	private int id;
 	
 	@Column(name="language")
@@ -35,7 +35,7 @@ public class Language {
 	private int level;
 	
 	@ManyToOne()
-	@JoinColumn(name="id")
+	@JoinColumn(name="job_seeker_id")
 	private JobSeeker jobSeeker;
 	
 	

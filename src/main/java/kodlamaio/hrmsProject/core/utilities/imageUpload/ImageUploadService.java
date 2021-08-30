@@ -1,4 +1,4 @@
-package kodlamaio.hrmsProject.core.utilities;
+package kodlamaio.hrmsProject.core.utilities.imageUpload;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -8,5 +8,5 @@ import java.util.Map;
 
 public interface ImageUploadService {
 	 @SuppressWarnings("rawtypes")
-	    DataResult<Map> uploadImageFile(MultipartFile imageFile);
+	 DataResult<Map> uploadImage(MultipartFile imageFile);
 }

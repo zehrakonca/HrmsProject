@@ -11,6 +11,8 @@ import kodlamaio.hrmsProject.entities.concretes.Image;
 public interface ImageService {
 	
 	Result add (Image image,MultipartFile multipartFile);
+	Result delete(int imageId);
+	Result update (Image image);
 	
 	DataResult<Image> getByJobSeekerId(int jobSeekerId);
 	

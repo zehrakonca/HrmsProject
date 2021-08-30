@@ -24,7 +24,8 @@ import kodlamaio.hrmsProject.bussines.abstracts.JobSeekerService;
 import kodlamaio.hrmsProject.core.utilities.results.DataResult;
 import kodlamaio.hrmsProject.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrmsProject.entities.concretes.JobSeeker;
-import kodlamaio.hrmsProject.entities.dtos.JobSeekerDto;
+//import kodlamaio.hrmsProject.entities.dtos.JobSeekerDto;
+import kodlamaio.hrmsProject.entities.dtos.CvDto;
 
 @RestController
 @RequestMapping("/api/jobseekers")
@@ -48,17 +49,16 @@ public class JobSeekersController {
 		return ResponseEntity.ok(this.jobSeekerService.add(jobSeeker));
 	}
 	
-	@GetMapping("getCv")
-	public ResponseEntity<?> getCv(@RequestParam int jobSeekerId)
+	@GetMapping("getAllCv")
+	public DataResult<List<CvDto>>getAllCv(@RequestParam int jobSeekerId)
 	{
-		return ResponseEntity.ok(this.jobSeekerService.getJobSeekerCv(jobSeekerId));
+		return this.jobSeekerService.getAllCv();
 	}
 	
-	 @GetMapping("/getCandidateDto")
-	 public DataResult<List<JobSeekerDto>> getJobSeekerDto()
-	 {
-	     return this.jobSeekerService.getJobSeekerDto();
-	 }
+	@GetMapping("/getAllCvByJobSeekerId")
+	public DataResult<List<CvDto>> getAllCvByJobSeekerId(@RequestParam(value = "jobseekerId")int jobseekerId){
+		return this.jobSeekerService.getAllCvByJobSeekerId(jobseekerId);
+	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
