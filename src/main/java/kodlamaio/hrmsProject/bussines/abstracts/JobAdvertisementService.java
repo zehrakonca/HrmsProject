@@ -10,6 +10,10 @@ import kodlamaio.hrmsProject.entities.concretes.JobAdvertisement;
 public interface JobAdvertisementService {
 	Result add (JobAdvertisement jobAdvertisement);
 	
+	Result update(JobAdvertisement jobAdvertisement);
+
+	Result delete(int advertisementId);
+	
 	Result updateStatu(int advertisementId);
 	
 	DataResult<List<JobAdvertisement>> getByCompanyName(String companyName);
@@ -17,8 +21,6 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getStatuIdIsTrue();
 	
 	DataResult<List<JobAdvertisement>> getJobAdvertisementDetailSorted();
-//	
-//	DataResult<List<JobAdvertisementDto>> getJobAdvertisementDetailSorted(int statu);
 	
 	
 }

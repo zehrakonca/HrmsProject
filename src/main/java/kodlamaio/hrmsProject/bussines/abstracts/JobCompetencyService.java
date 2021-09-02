@@ -8,8 +8,15 @@ import kodlamaio.hrmsProject.entities.concretes.JobCompetency;
 
 public interface JobCompetencyService {
 	Result add (JobCompetency jobCompetency);
+	
+	Result update(JobCompetency jobCompetency);
+
+	Result delete(int competencyId);
+	
 	DataResult<List<JobCompetency>> getAll();
+	
 	DataResult<JobCompetency> getById(int competencyId);
+	
 	DataResult<List<JobCompetency>> getByJobSeekerId(int jobSeekerId);
 
 }

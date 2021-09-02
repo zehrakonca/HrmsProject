@@ -34,5 +34,17 @@ public class SectorManager implements SectorService {
 		this.sectorDao.save(sector);
 		return new SuccessResult("sektör bilgisi eklendi");
 	}
+
+	@Override
+	public Result update(Sector sector) {
+		this.sectorDao.save(sector);
+		return new SuccessResult("sektör bilgisi güncellendi");
+	}
+
+	@Override
+	public Result delete(int sectorId) {
+		this.sectorDao.deleteById(sectorId);
+		return new SuccessResult("sektör bilgisi silindi.");
+	}
 	
 }

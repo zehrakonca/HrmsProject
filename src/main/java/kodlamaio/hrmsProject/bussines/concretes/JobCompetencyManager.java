@@ -29,6 +29,18 @@ public class JobCompetencyManager implements JobCompetencyService {
 		this.jobCompetencyDao.save(jobCompetency);
 		return new SuccessResult("yetkinlik alanı eklendi.");
 	}
+	
+	@Override
+	public Result update(JobCompetency jobCompetency) {
+		this.jobCompetencyDao.save(jobCompetency);
+		return new SuccessResult("yetkinlik alanı güncellendi.");
+	}
+
+	@Override
+	public Result delete(int competencyId) {
+		this.jobCompetencyDao.deleteById(competencyId);
+		return new SuccessResult("yetkinlik alanı silindi.");
+	}
 
 	@Override
 	public DataResult<List<JobCompetency>> getAll() {

@@ -2,6 +2,7 @@ package kodlamaio.hrmsProject.bussines.concretes;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,18 @@ public class JobSeekerManager implements JobSeekerService {
 	}
 	
 	@Override
+	public Result update(JobSeeker jobSeeker) {
+		this.jobSeekerDao.save(jobSeeker);
+		return new SuccessResult("iş arayan bilgisi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int jobSeekerId) {
+		this.jobSeekerDao.deleteById(jobSeekerId);
+		return new SuccessResult("iş arayan bilgisi silindi.");
+	}
+	
+	@Override
 	public DataResult<JobSeeker> getById(int jobSeekerId) {
 		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.getById(jobSeekerId));
 	}
@@ -110,6 +123,4 @@ public class JobSeekerManager implements JobSeekerService {
 			return true;
 		}
 	}
-
-	
 }

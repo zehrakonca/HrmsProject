@@ -11,6 +11,13 @@ import kodlamaio.hrmsProject.entities.concretes.SystemEmployee;
 public interface SystemEmployeeService{
 	DataResult<List<SystemEmployee>> getAll();
 	Result add(SystemEmployee systemEmployee);
+	
+
+	Result update(SystemEmployee systemEmployee);
+
+	Result delete(int employeeId);
+	
 	Result updateMemberData(JobSeeker jobSeeker);
+	
 	Result updateEmployerData(Employer employer);
 }

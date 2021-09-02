@@ -29,6 +29,18 @@ public class SocialMediaAccountManager implements SocialMediaAccountService{
 		this.socialMediaAccount.save(socialMediaAccount);
 		return new SuccessResult("sosyal medya hesabı eklendi.");
 	}
+	
+	@Override
+	public Result update(SocialMediaAccount socialMediaAccount) {
+		this.socialMediaAccount.save(socialMediaAccount);
+		return new SuccessResult("sosyal medya hesabı güncellendi.");
+	}
+
+	@Override
+	public Result delete(int accountId) {
+		this.socialMediaAccount.deleteById(accountId);
+		return new SuccessResult("sosyal medya hesabı silindi.");
+	}
 
 	@Override
 	public DataResult<List<SocialMediaAccount>> getAll() {
@@ -44,5 +56,7 @@ public class SocialMediaAccountManager implements SocialMediaAccountService{
 	public DataResult<List<SocialMediaAccount>> getByJobSeekerId(int jobSeekerId) {
 		return new SuccessDataResult<List<SocialMediaAccount>>(this.socialMediaAccount.getByJobSeekerId(jobSeekerId));
 	}
+
+	
 
 }

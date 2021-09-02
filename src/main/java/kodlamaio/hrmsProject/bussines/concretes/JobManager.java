@@ -37,6 +37,19 @@ public class JobManager implements JobService{
 		this.jobDao.save(job);
 		return new SuccessResult("iş bilgisi eklendi.");
 	}
+	
+	@Override
+	public Result update(Job job) {
+		this.jobDao.save(job);
+		return new SuccessResult("iş bilgisi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int jobId) {
+		this.jobDao.deleteById(jobId);
+		return new SuccessResult("iş bilgisi silindi.");
+
+	}
 
 	@Override
 	public DataResult<Job> getByJob(String jobName) {
@@ -89,5 +102,7 @@ public class JobManager implements JobService{
 		Sort sort = Sort.by(Sort.Direction.ASC,"jobName");
 		return new SuccessDataResult<List<Job>>(this.jobDao.findAll(sort),"başarılı.");
 	}
+
+	
 
 }

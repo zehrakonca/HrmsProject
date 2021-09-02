@@ -28,6 +28,18 @@ public class CoverLetterManager  implements CoverLetterService{
 		this.coverLetterDao.save(coverLetter);
 		return new SuccessResult("ön yazı eklendi.");
 	}
+	
+	@Override
+	public Result delete(int coverLetterId) {
+		this.coverLetterDao.deleteById(coverLetterId);
+		return new SuccessResult("ön yazı silindi.");
+	}
+
+	@Override
+	public Result update(CoverLetter coverLetter) {
+		this.coverLetterDao.save(coverLetter);
+		return new SuccessResult("ön yazı güncellendi.");
+	}
 
 	@Override
 	public DataResult<CoverLetter> getById(int coverLetterId) {
@@ -44,5 +56,7 @@ public class CoverLetterManager  implements CoverLetterService{
 	public DataResult<List<CoverLetter>> getAll() {
 		return new SuccessDataResult<List<CoverLetter>>(this.coverLetterDao.findAll());
 	}
+
+	
 
 }

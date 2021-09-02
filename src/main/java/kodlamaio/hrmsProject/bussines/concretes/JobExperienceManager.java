@@ -30,6 +30,18 @@ public class JobExperienceManager implements JobExperienceService{
 		this.jobExperienceDao.save(jobExperience);
 		return new SuccessResult("iş deneyimi eklendi.");
 	}
+	
+	@Override
+	public Result update(JobExperience jobExperience) {
+		this.jobExperienceDao.save(jobExperience);
+		return new SuccessResult("iş deneyimi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int experienceId) {
+		this.jobExperienceDao.deleteById(experienceId);
+		return new SuccessResult("iş deneyimi silindi.");
+	}
 
 	@Override
 	public DataResult<List<JobExperience>> getAll() {
@@ -45,5 +57,7 @@ public class JobExperienceManager implements JobExperienceService{
 	public DataResult<JobExperience> getById(int experienceId) {
 		return new SuccessDataResult<JobExperience>(this.jobExperienceDao.getById(experienceId));
 	}
+
+	
 	
 }

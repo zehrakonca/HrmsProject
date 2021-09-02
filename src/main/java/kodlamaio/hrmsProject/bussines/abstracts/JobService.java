@@ -15,6 +15,10 @@ public interface JobService {
 	
 	Result add(Job job);
 	
+	Result update(Job job);
+	
+	Result delete(int jobId);
+	
 	DataResult<Job>getByJob(String jobName);
 	
 	DataResult<Job> getByJobNameAndSector(String jobName, int sectorId);

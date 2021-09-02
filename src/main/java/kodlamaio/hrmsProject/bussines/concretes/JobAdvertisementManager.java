@@ -32,6 +32,18 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("iş ilanı eklendi.");
 	}
+	
+	@Override
+	public Result update(JobAdvertisement jobAdvertisement) {
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("iş ilanı bilgisi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int advertisementId) {
+		this.jobAdvertisementDao.deleteById(advertisementId);
+		return new SuccessResult("iş ilanı bilgisi silindi.");
+	}
 
 	@Override
 	public Result updateStatu(int advertisementId) {
@@ -51,15 +63,12 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getStatuIdIsTrue(),"data listelendi.");
 	}
 
-//	@Override
-//	public DataResult<List<JobAdvertisementDto>> getJobAdvertisementDetail(int statu) {
-//		return new SuccessDataResult<List<JobAdvertisementDto>>(this.jobAdvertisementDao.getAllByStatu(statu));
-//	}
-//
 	@Override
 	public DataResult<List<JobAdvertisement>> getJobAdvertisementDetailSorted() {
 		Sort sort = Sort.by(Sort.Direction.ASC, "applicationDate");
 		return new SuccessDataResult<List<JobAdvertisement>>
 		(this.jobAdvertisementDao.getByJobAdvertisementDetailsSorted(sort));
 	}
+
+	
 }

@@ -8,7 +8,14 @@ import kodlamaio.hrmsProject.entities.concretes.JobExperience;
 
 public interface JobExperienceService {
 	Result add (JobExperience jobExperience);
+	
+	Result update(JobExperience jobExperience);
+
+	Result delete(int experienceId);
+	
 	DataResult<List<JobExperience>> getAll();
+	
 	DataResult<List<JobExperience>> getByJobSeekerId(int jobSeekerId);
+	
 	DataResult<JobExperience> getById(int experienceId);
 }

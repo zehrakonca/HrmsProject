@@ -57,6 +57,18 @@ public class SystemEmployeeManager implements SystemEmployeeService {
 		
 	}
 	
+	@Override
+	public Result update(SystemEmployee systemEmployee) {
+		systemEmployeeDao.save(systemEmployee);
+		 return new SuccessResult("Profil bilgisi güncellenmiştir.");
+	}
+
+	@Override
+	public Result delete(int employeeId) {
+		this.systemEmployeeDao.deleteById(employeeId);
+		return new SuccessResult("Profil bilgisi silindi.");
+	}
+	
 	private boolean dataControl(SystemEmployee systemEmployee)
 	{
 		if(systemEmployee.getFirstname() == null || systemEmployee.getFirstname().isBlank() ||
@@ -87,5 +99,7 @@ public class SystemEmployeeManager implements SystemEmployeeService {
 		employerDao.save(employer);
 		return new SuccessResult("İşveren bilgisi güncellendi.");
 	}
+
+	
 
 }

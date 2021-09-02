@@ -54,6 +54,18 @@ public class EmployerManager implements EmployerService {
 			return new SuccessResult("Üyelik başarılı bir şekilde oluşturuldu. Email onayınız yapıldıktan sonra sistemi kullanmaya başlayabilirsiniz.");
 		}
 	}
+	
+	@Override
+	public Result update(Employer employer) {
+		this.employerDao.save(employer);
+		return new SuccessResult("İşveren bilgisi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int employerId) {
+		this.employerDao.deleteById(employerId);
+		return new SuccessResult("İşveren bilgisi silindi.");
+	}
 	private boolean dataControl (Employer employer)
 	{
 		if(employer.getCompanyMail() == null || employer.getCompanyMail().isBlank() || employer.getPassword()==null ||employer.getPassword() .isBlank() || employer.getPassword_rep() == null ||  employer.getPassword_rep().isBlank() || employer.getCompanyName() ==null ||employer.getCompanyName().isBlank() || employer.getWeb_site_name()==null ||employer.getWeb_site_name().isBlank() || employer.getTelephone() ==null || employer.getTelephone().isBlank()) {
@@ -63,5 +75,7 @@ public class EmployerManager implements EmployerService {
 			return true;
 		}
 	}
+
+	
 
 }

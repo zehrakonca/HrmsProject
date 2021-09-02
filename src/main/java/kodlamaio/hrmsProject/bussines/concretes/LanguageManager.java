@@ -29,6 +29,18 @@ public class LanguageManager implements LanguageService{
 		this.languageDao.save(language);
 		return new SuccessResult("dil bilgisi eklendi.");
 	}
+	
+	@Override
+	public Result update(Language language) {
+		this.languageDao.save(language);
+		return new SuccessResult("dil bilgisi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int langugeId) {
+		this.languageDao.deleteById(langugeId);
+		return new SuccessResult("dil bilgisi silindi.");
+	}
 
 	@Override
 	public DataResult<Language> getById(int languageId) {
@@ -44,5 +56,7 @@ public class LanguageManager implements LanguageService{
 	public DataResult<List<Language>> getAll() {
 		return new SuccessDataResult<List<Language>>(this.languageDao.findAll());
 	}
+
+	
 
 }
