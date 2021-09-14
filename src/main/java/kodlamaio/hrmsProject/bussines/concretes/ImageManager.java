@@ -41,25 +41,25 @@ public class ImageManager implements ImageService{
 	}
 
 	@Override
-	public DataResult<Image> getByJobSeekerId(int jobSeekerId) {
-		return new SuccessDataResult<Image>(this.imageDao.getByJobSeekerId(jobSeekerId));
+	public DataResult<Image> getByUserId(int userId) {
+		return new SuccessDataResult<Image>(this.imageDao.getUrlByUser_Id(userId));
 	}
 
 	@Override
 	public DataResult<List<Image>> getAll() {
-        return new SuccessDataResult<List<Image>>(this.imageDao.findAll());
+        return new SuccessDataResult<List<Image>>(this.imageDao.findAll()); 
     }
 
 	@Override
 	public Result delete(int imageId) {
-		this.imageDao.deleteById(imageId);
+		this.imageDao.deleteById(imageId);	
 		return new SuccessResult("fotoğraf silindi.");
 	}
 
 	@Override
 	public Result update(Image image) {
 		this.imageDao.save(image);
-		return new SuccessResult("fotoğraf güncellendi.");
+		return new SuccessResult("fotoğraf güncellendi."); 
 	}
 
 }

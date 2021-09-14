@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import kodlamaio.hrmsProject.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +28,7 @@ public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="image_id")
-	private int id;
+	private int imageId;
 	
 	@NotBlank
 	@NotNull
@@ -40,6 +41,6 @@ public class Image {
 	private LocalDate createdDate = LocalDate.now();
 	
 	@ManyToOne
-	@JoinColumn(name="job_seeker_id")
-	private JobSeeker jobSeeker;
+	@JoinColumn(name="user_id")
+	private User user;
 }

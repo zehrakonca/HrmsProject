@@ -1,15 +1,10 @@
 package kodlamaio.hrmsProject.entities.concretes;
 
 import java.util.List;
-
-//import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -17,21 +12,21 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import kodlamaio.hrmsProject.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="employers")
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler","jobAdvertisements"})
-public class Employer{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="employer_id")
-	private int employerId;
+@PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
+public class Employer extends User{
 	
 	@NotBlank
 	@NotNull
@@ -48,28 +43,6 @@ public class Employer{
 	@NotNull
 	@Column(name="company_mail")
 	private String companyMail;
-	
-	@NotBlank
-	@NotNull
-	@Column(name="telephone")
-	private String telephone;
-	
-	@NotBlank
-	@NotNull
-	@Column(name="password")
-	private String password;
-	
-	@NotBlank
-	@NotNull
-	@Column(name="password_rep")
-	private String password_rep;
-	
-	@Column(name="usertype")
-	private int usertype;
-	
-
-	@Column(name="statu")
-	private int statu;
 	
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisements;

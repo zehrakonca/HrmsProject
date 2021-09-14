@@ -36,7 +36,7 @@ public class EmployerManager implements EmployerService {
 			return new ErrorResult("Kayıt için eksik değer girildi, kontrol edip tekrar deneyin.");
 		}
 		if (!MailValidation.checkEmail(employer.getCompanyMail())) {
-			return new ErrorResult("Email hatalı."+ employer.getCompanyName());
+			return new ErrorResult("Email hatalı. "+ employer.getCompanyName());
 		}
 		if (!MailValidation.checkEmailDomain(employer.getWeb_site_name(), employer.getCompanyMail())) {
 			return new ErrorResult("Email ve girilen web adresi uyumlu değil");

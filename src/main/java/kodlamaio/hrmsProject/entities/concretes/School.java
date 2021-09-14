@@ -54,6 +54,6 @@ public class School {
 	private ParticipationStatus participationStatus;
 	
 	@ManyToOne()
-	@JoinColumn(name="job_seeker_id")
+	@JoinColumn(name="jobSeeker_id")
 	private JobSeeker jobSeeker;	
 }

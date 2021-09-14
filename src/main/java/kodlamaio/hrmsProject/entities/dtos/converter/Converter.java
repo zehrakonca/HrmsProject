@@ -10,7 +10,7 @@ public class Converter {
 	public CvDto convertToCv(JobSeeker jobSeeker)
 	{
 		return new CvDto(jobSeeker.getId(),
-				         jobSeeker.getFirstname(),
+				         jobSeeker.getFirstName(),
 				         jobSeeker.getLastname(),
 				         jobSeeker.getDate(),
 				         jobSeeker.getImages(),

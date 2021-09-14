@@ -42,6 +42,6 @@ public class JobExperience {
 	private Date endDate;
 	
 	@ManyToOne()
-	@JoinColumn(name="job_seeker_id")
+	@JoinColumn(name="jobSeeker_id")
 	private JobSeeker jobSeeker;
 }

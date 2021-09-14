@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrmsProject.bussines.abstracts.UserService;
 import kodlamaio.hrmsProject.core.dataAccess.UserDao;
 import kodlamaio.hrmsProject.core.entities.User;
-import kodlamaio.hrmsProject.core.utilities.results.DataResult;
 import kodlamaio.hrmsProject.core.utilities.results.Result;
-import kodlamaio.hrmsProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrmsProject.core.utilities.results.SuccessResult;
 
 @Service
@@ -28,10 +26,10 @@ public class UserManager implements UserService {
 		return new SuccessResult("Kullanıcı eklendi.");
 	}
 
-	@Override
-	public DataResult<User> findByEmail(String email) {
-		return new SuccessDataResult<User>(this.userDao.findByEmail(email),"kullanıcı bulundu.");
-	}
-	
+//	@Override
+//	public DataResult<User> findByEmail(String email) {
+//		return new SuccessDataResult<User>(this.userDao.findByEmail(email),"kullanıcı bulundu.");
+//	}
+//	
 	
 }

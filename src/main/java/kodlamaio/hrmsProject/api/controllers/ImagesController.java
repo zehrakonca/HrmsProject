@@ -12,10 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrmsProject.bussines.abstracts.ImageService;
 import kodlamaio.hrmsProject.bussines.abstracts.JobSeekerService;
+import kodlamaio.hrmsProject.core.entities.User;
 import kodlamaio.hrmsProject.core.utilities.results.DataResult;
 import kodlamaio.hrmsProject.core.utilities.results.Result;
 import kodlamaio.hrmsProject.entities.concretes.Image;
-import kodlamaio.hrmsProject.entities.concretes.JobSeeker;
 
 @RestController
 @RequestMapping("/api/images")
@@ -30,11 +30,11 @@ public class ImagesController {
 	}
 	
 	@PostMapping("add")
-	public Result add (@RequestParam(value="jobSeekerId") int jobSeekerId, @RequestParam(value="imageFile") MultipartFile imageFile)
+	public Result add (@RequestParam(value="userId") int userId, @RequestParam(value="imageFile") MultipartFile imageFile)
 	{
-		JobSeeker jobSeeker = this.jobSeekerService.getById(jobSeekerId).getData();
+		User user = this.jobSeekerService.getById(userId).getData();
 		Image image = new Image();
-		image.setJobSeeker(jobSeeker);
+		image.setUser(user);
 		return this.imageService.add(image, imageFile);
 	}
 	
@@ -42,5 +42,10 @@ public class ImagesController {
 	public DataResult<List<Image>> getAll()
 	{
 		return this.imageService.getAll();
+	}
+	
+	@GetMapping("getAllImageById")
+	public DataResult<Image>getAllImageById(@RequestParam(value="userId") int userId){
+		return this.imageService.getByUserId(userId);
 	}
 }
