@@ -17,7 +17,7 @@ export default function Sidebar() {
           <Menu.Header>Sectors</Menu.Header>
           <Menu.Item>
           {sectors.map((sector) => (
-          <Checkbox>{sector.sector}</Checkbox> ))}
+          <Checkbox>{sector.sectorName}</Checkbox> ))}
           </Menu.Item>
           </Menu.Item>
 

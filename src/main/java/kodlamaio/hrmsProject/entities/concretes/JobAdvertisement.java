@@ -14,7 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -36,8 +35,9 @@ public class JobAdvertisement {
 	@Column(name="advertisement_name")
 	private String advertisementName;
 	
-	@Column(name="sector_id")
-	private int sectorId;
+	@ManyToOne
+	@JoinColumn(name="sector_id")
+	private Sector sector;
 	
 	@ManyToOne
 	@JoinColumn(name="position_level_id")
@@ -70,7 +70,6 @@ public class JobAdvertisement {
 	private int statuId;
 	
 	@ManyToOne()
-	@JsonIgnore
 	@JoinColumn(name="employer_id")
 	private Employer employer;
 		

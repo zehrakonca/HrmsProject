@@ -30,7 +30,7 @@ public class Sector {
 	private int sectorId;
 	
 	@Column(name="sector_name")
-	private String sector;
+	private String sectorName;
 	
 	@OneToMany(mappedBy = "sector")
 	private List<Job> jobs;

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +19,11 @@ import kodlamaio.hrmsProject.entities.concretes.JobAdvertisement;
 
 @RestController
 @RequestMapping("/api/jobAdvertisements")
+@CrossOrigin(origins = "http://localhost:3000")
 public class JobAdvertisementsController {
 
 	private JobAdvertisementService jobAdvertisementService;
-
+	
 	@Autowired
 	public JobAdvertisementsController(JobAdvertisementService jobAdvertisementService) {
 		super();
@@ -63,5 +65,11 @@ public class JobAdvertisementsController {
 	public DataResult<List<JobAdvertisement>> getByStatuId()
 	{
 		return jobAdvertisementService.getStatuIdIsTrue();
+	}
+	
+	@GetMapping("/getAll")
+	public DataResult<List<JobAdvertisement>> getAll()
+	{
+		return jobAdvertisementService.getAll();
 	}
 }

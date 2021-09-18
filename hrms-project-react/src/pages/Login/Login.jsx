@@ -9,7 +9,7 @@ export default function Login() {
                 <Grid columns='equal'>
                     <Grid.Row textAlign="center">
                         <Grid.Column>
-                            <Segment color='violet'>
+                            <Segment color='teal'>
                                 <Form>
                                     <Form.Input
                                         icon='user'
@@ -23,14 +23,14 @@ export default function Login() {
                                         label='Password'
                                         type='Please enter your password.'
                                     />
-                                    <Button content='Login' color="violet" />
+                                    <Button content='Login' color="teal" />
                                 </Form>
                                 <Divider horizontal>OR</Divider>
                                 Sign UP!
                             </Segment>
                         </Grid.Column>
                         <Grid.Column>
-                            <Segment color='violet'>
+                            <Segment color='teal'>
                                 <Image src={loginPhoto}/>
                             </Segment>
                         </Grid.Column>

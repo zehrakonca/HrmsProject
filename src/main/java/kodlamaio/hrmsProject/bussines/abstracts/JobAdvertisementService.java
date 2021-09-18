@@ -22,5 +22,7 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisement>> getJobAdvertisementDetailSorted();
 	
+	DataResult<List<JobAdvertisement>> getAll();
+	
 	
 }

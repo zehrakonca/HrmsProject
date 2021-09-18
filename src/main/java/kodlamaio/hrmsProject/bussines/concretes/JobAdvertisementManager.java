@@ -70,5 +70,10 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		(this.jobAdvertisementDao.getByJobAdvertisementDetailsSorted(sort));
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getAll() {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.findAll(),"data listelendi.");
+	}
+
 	
 }
