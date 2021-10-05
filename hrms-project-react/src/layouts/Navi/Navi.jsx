@@ -1,46 +1,49 @@
-import React from 'react'
-import { Button, Menu, Icon, Search, Dropdown } from 'semantic-ui-react'
-
-const options = [
-    { key: 'login', icon: 'lock', text: 'Login', value: 'login' },
-    { key: 'try', icon: 'signup', text: 'Try for Free', value: 'try' }
-]
+import React, { useState } from 'react'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
+import { Menu, Icon } from 'semantic-ui-react'
+import SignedIn from './SignedIn'
+import SignOut from './SignOut'
 
 export default function Navi() {
+    const [isAuthenticated, setIsAuthenticated] = useState(true)
+    const history = useHistory()
+
+    function handleSignOut() {
+        setIsAuthenticated(false)
+        history.push("/")
+    }
+
+    function handleSignIn() {
+        setIsAuthenticated(true)
+    }
+
     return (
         <div>
             <Menu secondary size='large' inverted color='teal' stackable >
                 <Menu.Item>
+                <Link to="/Home">
                     <Icon name='handshake outline' size='big' />
                     ihopefindjob
+                    </Link>
                 </Menu.Item>
-                <Menu.Item as='a' active>
-                    Home
+                <Menu.Item active>
+                <Link to="/home">Home</Link>
                 </Menu.Item>
-                <Menu.Item as='a'>Job Advertisements</Menu.Item>
-                <Menu.Item as='a'>University Directory</Menu.Item>
-                <Menu.Item as='a'>Business Directory</Menu.Item>
+                <Menu.Item>
+                    <Link to="/advertisements">Job Advertisements</Link>
+                </Menu.Item>
+                <Menu.Item>
+                    <Link to="/Login">University Directory(login)</Link>
+                </Menu.Item>
+                <Menu.Item>
+                   
+                </Menu.Item>
                 <Menu.Item as='a'>
-                    <Search placeholder='Write the job you are looking for.' />
+                    {/* <Search placeholder='Write the job you are looking for.' /> */}
                 </Menu.Item>
                 <Menu.Item position='right'>
-                    <Button as='a'>
-                        Log in
-                    </Button>
-                    <Button as='a' inverted color='grey' style={{ marginLeft: '0.5em' }}>
-                        Sign Up
-                    </Button>
-                    <Button.Group inverted color='grey'>
-                    <Button as='a' style={{ marginLeft: '0.5em' }}>
-                        For Employer
-                    </Button>
-                    <Dropdown
-                        className='button icon'
-                        floating
-                        options={options}
-                        trigger={<></>}
-                    />
-                     </Button.Group>
+                    {isAuthenticated ? <SignedIn signOut={handleSignOut} /> : <SignOut signIn={handleSignIn} />}
                 </Menu.Item>
             </Menu>
         </div>

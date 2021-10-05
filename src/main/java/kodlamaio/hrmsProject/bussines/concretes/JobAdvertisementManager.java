@@ -74,6 +74,12 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	public DataResult<List<JobAdvertisement>> getAll() {
 		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.findAll(),"data listelendi.");
 	}
+	@Override
+	public DataResult<JobAdvertisement> getByAdvertisementId(int advertisementId) {
+		return new SuccessDataResult<JobAdvertisement>(jobAdvertisementDao.getById(advertisementId),"data listelendi.");
+	}
+	
+	
 
 	
 }

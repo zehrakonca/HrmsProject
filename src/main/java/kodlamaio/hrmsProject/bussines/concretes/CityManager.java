@@ -19,7 +19,7 @@ public class CityManager implements CityService{
 		super();
 		this.cityDao = cityDao;
 	}
-	public CityDao cityDao;
+	private CityDao cityDao;
 	
 	@Override
 	public DataResult<List<City>> getAll() {

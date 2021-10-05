@@ -48,6 +48,12 @@ public class EmployersController {
 		return ResponseEntity.ok(this.employerService.add(employer));
 	}
 	
+	@PostMapping("/update")
+	public ResponseEntity<?> update(@Valid @RequestBody Employer employer)
+	{
+		return ResponseEntity.ok(this.employerService.update(employer));
+	}
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorDataResult<Object> handleValidationException(MethodArgumentNotValidException exceptions)

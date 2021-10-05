@@ -72,4 +72,10 @@ public class JobAdvertisementsController {
 	{
 		return jobAdvertisementService.getAll();
 	}
+	
+	@GetMapping("/getById")
+	public DataResult<JobAdvertisement> getById(@RequestParam("advertisementId") int advertisementId)
+	{
+		return jobAdvertisementService.getByAdvertisementId(advertisementId);
+	}
 }

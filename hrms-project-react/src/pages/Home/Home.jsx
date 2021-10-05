@@ -1,10 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Header, Search, Grid, Image, Segment, List } from 'semantic-ui-react';
+import { Link } from "react-router-dom";
 import bannerPicture from '../../img/meeting1.jpg';
 import avatar from '../../img/avatar.png';
 import companyAvatar from '../../img/company.png';
+import JobAdvertisementService from "../../services/JobAdvertisementService";
+import SectorService from "../../services/SectorService";
+import JobService from "../../services/JobService";
 
 export default function Home() {
+    const [jobAdvertisements, setJobAdvertisements] = useState([])
+    const [sectors, setSectors] = useState([]);
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+        let jobAdvertisementService = new JobAdvertisementService()
+        jobAdvertisementService.getJobAdvertisements().then(result => setJobAdvertisements(result.data.data))
+    }, [])
+
+    useEffect(() => {
+        let sectorService = new SectorService()
+        sectorService.getAllSectors().then(result => setSectors(result.data.data))
+    }, [])
+
+    useEffect(() => {
+        let jobService = new JobService()
+        jobService.getAllJobs().then(result => setJobs(result.data.data))
+    }, [])
+
+
     return (
         <div>
             <Grid>
@@ -21,37 +45,31 @@ export default function Home() {
                                 content='Do whatever you want when you want to.'
                                 color="grey"
                             />
-                            <Search size="large" placeholder='Write the job you are looking for.' />
+                            <Search size="huge" placeholder='Write the job you are looking for.' />
                         </Container>
                         <Segment>
                             <Header as='h4' color='teal'>
                                 Today's new job!
                             </Header>
-                            <List divided relaxed>
-                                <List.Item>
-                                    <Image src={companyAvatar} size="tiny" />
-                                    <List.Content>
-                                        <List.Header as='a'>Company Name</List.Header>
-                                        <List.Header as='a'>Job Name</List.Header>
-                                        <List.Description as='a'>City</List.Description>
-                                    </List.Content>
-                                </List.Item>
-                                <List.Item>
-                                    <Image src={companyAvatar} size="tiny" />
-                                    <List.Content>
-                                        <List.Header as='a'>Company Name</List.Header>
-                                        <List.Header as='a'>Job Name</List.Header>
-                                        <List.Description as='a'>City</List.Description>
-                                    </List.Content>
-                                </List.Item>
-                                <List.Item>
-                                    <Image src={companyAvatar} size="tiny" />
-                                    <List.Content>
-                                        <List.Header as='a'>Company Name</List.Header>
-                                        <List.Header as='a'>Job Name</List.Header>
-                                        <List.Description as='a'>City</List.Description>
-                                    </List.Content>
-                                </List.Item>
+                            <List divided>
+                                {jobAdvertisements.map((jobAdvertisement) => (
+                                    <List.Item>
+                                        <Image src={companyAvatar} size="tiny" />
+                                        <List.Content>
+                                            <List.Header as='a'>
+                                                <Link to={`/advertisements/${jobAdvertisement.advertisementId}`}>
+                                                    {jobAdvertisement.employer?.companyName}
+                                                </Link>
+                                            </List.Header>
+                                            <List.Header as='a'>
+                                                 <Link to={`/advertisements/${jobAdvertisement.advertisementId}`}>
+                                                {jobAdvertisement.advertisementName}
+                                                </Link>
+                                                </List.Header>
+                                            <List.Description as='a'> {jobAdvertisement.city?.cityName}</List.Description>
+                                        </List.Content>
+                                    </List.Item>
+                                ))}
                             </List>
                         </Segment>
                     </Grid.Column>
@@ -67,13 +85,13 @@ export default function Home() {
                             <Header as='h3' style={{ fontSize: '2em' }} color="grey">
                                 "How could you find job?"
                             </Header>
-                            <p style={{ fontSize: '1.33em' }}color="grey">That is what they all say about us</p>
+                            <p style={{ fontSize: '1.33em' }} color="grey">That is what they all say about us</p>
                         </Grid.Column>
                         <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                            <Header as='h4' style={{ fontSize: '2em' }}color="grey">
+                            <Header as='h4' style={{ fontSize: '2em' }} color="grey">
                                 "I can't believe i find job two years ago. But I'm senior developer now."
                             </Header>
-                            <p style={{ fontSize: '1.33em' }}color="grey">
+                            <p style={{ fontSize: '1.33em' }} color="grey">
                                 <Image src={avatar} avatar />
                                 <b>Nan</b> Chief Fun Officer Acme Toys
                             </p>
@@ -81,14 +99,14 @@ export default function Home() {
                     </Grid.Row>
                 </Grid>
             </Segment>
-            <Grid columns={3} divided centered>
+            <Grid columns={3} divided>
                 <Grid.Row stretched>
                     <Grid.Column>
                         <Header color="teal">job postings by industry</Header>
                         <List>
-                            <List.Item>sector1(count)</List.Item>
-                            <List.Item>sector2(count)</List.Item>
-                            <List.Item>sector3(count)</List.Item>
+                            {sectors.map((sector) => (
+                                <List.Item>{sector.sectorName}</List.Item>
+                            ))}
                         </List>
                     </Grid.Column>
                     <Grid.Column>
@@ -102,9 +120,9 @@ export default function Home() {
                     <Grid.Column>
                         <Header color="teal">job postings by job titles</Header>
                         <List>
-                            <List.Item>title1</List.Item>
-                            <List.Item>title2</List.Item>
-                            <List.Item>title3</List.Item>
+                            {jobs.map((job) => (
+                                <List.Item>{job.jobName}</List.Item>
+                            ))}
                         </List>
                     </Grid.Column>
                 </Grid.Row>

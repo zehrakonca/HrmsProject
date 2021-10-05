@@ -85,4 +85,15 @@ public class JobAdvertisement {
 	@JoinColumn(name="type_id")
 	private JobType jobType;
 	
-}
+	@ManyToOne
+	@JoinColumn(name="military_statu_id")
+	private MilitaryStatus militaryStatus;
+
+	@ManyToOne
+	@JoinColumn(name="work_type_id")
+	private WorkType workType;
+	
+	@ManyToOne
+	@JoinColumn(name="experience_id")
+	private Experience experience;
+	}

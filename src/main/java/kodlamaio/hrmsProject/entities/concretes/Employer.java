@@ -44,6 +44,9 @@ public class Employer extends User{
 	@Column(name="company_mail")
 	private String companyMail;
 	
+	@Column(name="company_description")
+	private String companyDescription;
+	
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisements;
 

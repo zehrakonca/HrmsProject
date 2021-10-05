@@ -24,5 +24,7 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisement>> getAll();
 	
+	DataResult<JobAdvertisement> getByAdvertisementId(int advertisementId);
+	
 	
 }
