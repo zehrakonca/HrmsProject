@@ -46,6 +46,11 @@ public class JobTypeManager implements JobTypeService{
 		this.jobTypeDao.deleteById(typeId);
 		return new SuccessResult("iş tipi silindi.");
 	}
+
+	@Override
+	public DataResult<JobType> getById(int id) {
+		return new SuccessDataResult<>(this.jobTypeDao.getById(id),"data listelendi.");
+	}
 	
 	
 }

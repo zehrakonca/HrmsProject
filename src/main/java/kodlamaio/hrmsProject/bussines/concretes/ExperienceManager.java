@@ -33,4 +33,21 @@ public class ExperienceManager  implements ExperienceService{
 	public DataResult<List<Experience>> getAll() {
 		return new SuccessDataResult<List<Experience>>(experienceDao.findAll(),"data listelendi.");
 	}
+
+	@Override
+	public Result update(Experience experience) {
+		this.experienceDao.save(experience);
+		return new SuccessResult("yıl bazlı deneyim bilgisi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int id) {
+		this.experienceDao.deleteById(id);
+		return new SuccessResult("yıl bazlı deneyim bilgisi silindi.");
+	}
+
+	@Override
+	public DataResult<Experience> getById(int id) {
+		return new SuccessDataResult<Experience>(this.experienceDao.getById(id), "data listelendi.");
+	}
 }

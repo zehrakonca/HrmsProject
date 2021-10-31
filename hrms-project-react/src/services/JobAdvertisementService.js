@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default class JobAdvertisementService{
-    getJobAdvertisements(){
-        return axios.get("http://localhost:8080/api/jobAdvertisements/getAll")
+    getJobAdvertisementsByIdTrue(){
+        return axios.get("http://localhost:8080/api/jobAdvertisements/getByStatuIdTrue")
     }
 
     getJobAdvertisementsBySorted(){
@@ -15,5 +15,17 @@ export default class JobAdvertisementService{
 
     addAdvertisement(advertisement){
         return axios.post("http://localhost:8080/api/jobAdvertisements/add",advertisement);
+    }
+
+    getJobAdvertisementsByIdFalse(){
+        return axios.get("http://localhost:8080/api/jobAdvertisements/getByStatuIdFalse")
+    }
+
+    getJobAdvertisements(){
+        return axios.get("http://localhost:8080/api/jobAdvertisements/getAll")
+    }
+
+    updateJobAdvertisementStatu(advertisementId){
+        return axios.get("http://localhost:8080/api/jobAdvertisements/updateStatu", advertisementId)
     }
 }

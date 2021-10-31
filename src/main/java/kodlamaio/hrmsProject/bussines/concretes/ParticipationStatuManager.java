@@ -47,4 +47,9 @@ public class ParticipationStatuManager implements ParticipationStatuService{
 		return new SuccessResult("Durum silindi.");
 	}
 
+	@Override
+	public DataResult<ParticipationStatus> getById(int id) {
+		return new SuccessDataResult<ParticipationStatus>(this.participationStatuDao.getById(id),"data listelendi.");
+	}
+
 }

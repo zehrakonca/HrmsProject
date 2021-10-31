@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Checkbox, Dropdown,Segment,Header,List,Button } from 'semantic-ui-react'
+import { Checkbox, Segment, Header, List, Button,Form } from 'semantic-ui-react'
 import SectorService from "../../src/services/SectorService"
 import JobService from '../services/JobService';
 import CityService from '../services/CityService';
@@ -24,6 +24,12 @@ export default function Sidebar() {
     let cityService = new CityService();
     cityService.getAllCities().then((result) => setCities(result.data.data));
   });
+
+  const getAllCities = cities.map((city, index) => ({
+    key: index,
+    text: city.cityName,
+    value: city.cityId
+  }))
   return (
     <div>
       <Segment>
@@ -44,6 +50,10 @@ export default function Sidebar() {
           ))}
         </List>
         <Header as="h4" disabled dividing>City</Header>
+        <Form.Select
+          label='City'
+          placeholder='Choose City'
+          options={getAllCities}/>
         <Button color="teal">Search</Button>
       </Segment>
     </div>

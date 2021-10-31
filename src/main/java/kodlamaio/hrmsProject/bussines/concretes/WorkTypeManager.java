@@ -33,4 +33,21 @@ public Result add(WorkType workType) {
 public DataResult<List<WorkType>> getAll() {
 	return new SuccessDataResult<List<WorkType>>(this.workTypeDao.findAll());
 }
+
+@Override
+public Result update(WorkType workType) {
+	this.workTypeDao.save(workType);
+	return new SuccessResult("iş tip bilgisi güncellendi.");
+}
+
+@Override
+public Result delete(int id) {
+	this.workTypeDao.deleteById(id);
+	return new SuccessResult("iş tip bilgisi silindi.");
+}
+
+@Override
+public DataResult<WorkType> getById(int id) {
+	return new SuccessDataResult<WorkType>(this.workTypeDao.getById(id), "data listelendi.");
+}
 }

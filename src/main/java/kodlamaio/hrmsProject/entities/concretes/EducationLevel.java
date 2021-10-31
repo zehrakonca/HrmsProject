@@ -26,7 +26,7 @@ public class EducationLevel {
 	@Id
 	@Column(name="education_level_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int levelId;
+	private int educationLevelId;
 	
 	@Column(name="levelname")
 	private String educationLevelName;

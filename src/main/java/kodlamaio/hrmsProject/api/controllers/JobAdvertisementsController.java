@@ -1,12 +1,12 @@
 package kodlamaio.hrmsProject.api.controllers;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,22 +33,9 @@ public class JobAdvertisementsController {
 	@PostMapping("/add")
 	public  Result add (@RequestBody JobAdvertisement jobAdvertisement)
 	{
-		jobAdvertisement.setReleaseDate(new Date());
 		return this.jobAdvertisementService.add(jobAdvertisement);
 	}
 	
-	@PostMapping("/updateStatu")
-	public Result updateStatu(@RequestBody int advertisementId)
-	{
-		return this.jobAdvertisementService.updateStatu(advertisementId);
-	}
-	
-//	@GetMapping("/getDetails")
-//	public DataResult<List<JobAdvertisementDto>> getJobAdvertisementDetail(int statu)
-//	{
-//		return this.jobAdvertisementService.getJobAdvertisementDetail(statu);
-//	}
-//	
 	@GetMapping("/getDetailsSorted")
 	public DataResult<List<JobAdvertisement>> getJobAdvertisementDetailSorted()
 	{
@@ -61,10 +48,10 @@ public class JobAdvertisementsController {
 		return this.jobAdvertisementService.getByCompanyName(companyName);
 	}
 	
-	@GetMapping("/getByStatuId")
-	public DataResult<List<JobAdvertisement>> getByStatuId()
+	@GetMapping("/getByStatuIdTrue")
+	public DataResult<List<JobAdvertisement>> getByIsActive(@RequestParam boolean isActive)
 	{
-		return jobAdvertisementService.getStatuIdIsTrue();
+		return jobAdvertisementService.getAllByIsActive(isActive);
 	}
 	
 	@GetMapping("/getAll")
@@ -78,4 +65,21 @@ public class JobAdvertisementsController {
 	{
 		return jobAdvertisementService.getByAdvertisementId(advertisementId);
 	}
+	
+	@PutMapping("/confirmAdvertisement")
+	public Result confirm(@RequestParam int advertisementId,@RequestParam int systemEmployeeId,@RequestParam boolean isConfirmed)
+	{
+		return jobAdvertisementService.confirm(advertisementId, advertisementId, advertisementId, isConfirmed);
+	}
+	
+	@PutMapping("/makeActiveOrPassive")
+	public Result makeActiveOrPassive(@RequestParam int advertisementId,@RequestParam boolean isActive)
+	{
+		return jobAdvertisementService.makeActiveOrPassive(advertisementId, isActive);
+	}
+	
+	@GetMapping("/getAllWaitingConfirmation")
+	public DataResult<List<JobAdvertisement>>getAllWaitingConfirmation(){
+		return jobAdvertisementService.getAllWaitingConfirmation();
+	}	
 }

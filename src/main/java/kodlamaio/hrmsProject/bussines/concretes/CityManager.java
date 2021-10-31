@@ -25,6 +25,4 @@ public class CityManager implements CityService{
 	public DataResult<List<City>> getAll() {
 		return new SuccessDataResult<List<City>>(cityDao.findAll(),"data listelendi");
 				}
-	
-
 }

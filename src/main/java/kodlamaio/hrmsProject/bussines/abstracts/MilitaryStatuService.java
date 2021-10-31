@@ -1,13 +1,7 @@
 package kodlamaio.hrmsProject.bussines.abstracts;
 
-import java.util.List;
-
-import kodlamaio.hrmsProject.core.utilities.results.DataResult;
-import kodlamaio.hrmsProject.core.utilities.results.Result;
-import kodlamaio.hrmsProject.entities.concretes.MilitaryStatus;
+import kodlamaio.hrmsProject.entities.concretes.MilitaryStatu;
 
 
-public interface MilitaryStatuService {
-	Result add(MilitaryStatus militaryStatus);
-	DataResult<List<MilitaryStatus>> getAll();
+public interface MilitaryStatuService extends BaseEntitiyService<MilitaryStatu>{
 }

@@ -103,6 +103,11 @@ public class JobManager implements JobService{
 		return new SuccessDataResult<List<Job>>(this.jobDao.findAll(sort),"başarılı.");
 	}
 
+	@Override
+	public DataResult<Job> getById(int id) {
+		return new SuccessDataResult<>(this.jobDao.getById(id), "data listelendi.");
+	}
+
 	
 
 }

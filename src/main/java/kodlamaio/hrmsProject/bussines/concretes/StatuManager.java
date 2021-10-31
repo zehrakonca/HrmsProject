@@ -45,4 +45,10 @@ public class StatuManager implements StatuService{
 		return new SuccessResult("statu bilgisi silindi.");
 	}
 
+	@Override
+	public DataResult<Statu> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

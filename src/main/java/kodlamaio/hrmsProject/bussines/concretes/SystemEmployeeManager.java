@@ -100,6 +100,11 @@ public class SystemEmployeeManager implements SystemEmployeeService {
 		return new SuccessResult("İşveren bilgisi güncellendi.");
 	}
 
+	@Override
+	public DataResult<SystemEmployee> getById(int id) {
+		return new SuccessDataResult<SystemEmployee>(this.systemEmployeeDao.getById(id),"data listelendi.");
+	}
+
 	
 
 }

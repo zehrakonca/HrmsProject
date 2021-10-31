@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrmsProject.bussines.abstracts.MilitaryStatuService;
 import kodlamaio.hrmsProject.core.utilities.results.DataResult;
-import kodlamaio.hrmsProject.entities.concretes.MilitaryStatus;
+import kodlamaio.hrmsProject.entities.concretes.MilitaryStatu;
 
 @RestController
 @RequestMapping("/api/militaryStatus")
@@ -24,7 +24,7 @@ public class MilitaryStatuController {
 		this.militaryStatuService = militaryStatuService;
 	}
 	@GetMapping("getAll")
-	public DataResult<List<MilitaryStatus>> getAll()
+	public DataResult<List<MilitaryStatu>> getAll()
 	{
 		return this.militaryStatuService.getAll();
 		}

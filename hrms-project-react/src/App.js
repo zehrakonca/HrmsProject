@@ -12,6 +12,7 @@ import Dashboard from './layouts/Dashboard/Dashboard';
 import JobDetail from "./pages/JobAdvertisement/JobDetail";
 import { Route } from 'react-router';
 import JobAdvertisementPosting from './pages/JobAdvertisement/JobAdvertisementPosting';
+import UpdateJobAdvertisement from './pages/SystemEmployee/UpdateJobAdvertisement'
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         </Route>
         <Route exact path="/advertisements/:id" component={JobDetail} />   
         <Route exact path="/advertisementpost" component={JobAdvertisementPosting}/>
+        <Route exact path="/advertisementPassive" component={UpdateJobAdvertisement}/>
       </Container>
       <Footer></Footer>
     </div>

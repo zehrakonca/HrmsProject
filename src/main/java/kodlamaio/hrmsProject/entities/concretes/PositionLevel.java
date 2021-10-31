@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class PositionLevel {
 	@Id
 	@Column(name="position_level_id")
-	private int levelId;
+	private int positionLevelId;
 	
 	@Column(name="levelname")
 	private String positionlevelName;

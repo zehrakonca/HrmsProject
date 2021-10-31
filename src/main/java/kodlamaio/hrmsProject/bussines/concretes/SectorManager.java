@@ -46,5 +46,10 @@ public class SectorManager implements SectorService {
 		this.sectorDao.deleteById(sectorId);
 		return new SuccessResult("sektör bilgisi silindi.");
 	}
+
+	@Override
+	public DataResult<Sector> getById(int id) {
+		return new SuccessDataResult<Sector>(this.sectorDao.getById(id), "data listelendi.");
+	}
 	
 }

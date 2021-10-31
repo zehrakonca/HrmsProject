@@ -11,7 +11,7 @@ import kodlamaio.hrmsProject.core.utilities.results.Result;
 import kodlamaio.hrmsProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrmsProject.core.utilities.results.SuccessResult;
 import kodlamaio.hrmsProject.dataAccess.abstracts.MilitaryStatuDao;
-import kodlamaio.hrmsProject.entities.concretes.MilitaryStatus;
+import kodlamaio.hrmsProject.entities.concretes.MilitaryStatu;
 
 @Service
 public class MilitaryStatuManager implements MilitaryStatuService{
@@ -24,12 +24,29 @@ public class MilitaryStatuManager implements MilitaryStatuService{
 	}
 
 	@Override
-	public Result add(MilitaryStatus militaryStatus) {
+	public Result add(MilitaryStatu militaryStatus) {
 		this.militaryStatuDao.save(militaryStatus);
 		return new SuccessResult("askerlik bilgisi eklendi.");
 	}
 
 	@Override
-	public DataResult<List<MilitaryStatus>> getAll() {
-		return new SuccessDataResult<List<MilitaryStatus>>(this.militaryStatuDao.findAll());				}
+	public DataResult<List<MilitaryStatu>> getAll() {
+		return new SuccessDataResult<List<MilitaryStatu>>(this.militaryStatuDao.findAll());				}
+
+	@Override
+	public Result update(MilitaryStatu entity) {
+		this.militaryStatuDao.save(entity);
+		return new SuccessResult("yıl bazlı deneyim bilgisi güncellendi.");
+	}
+
+	@Override
+	public Result delete(int id) {
+		this.militaryStatuDao.deleteById(id);
+		return new SuccessResult("yıl bazlı deneyim bilgisi silindi.");
+	}
+
+	@Override
+	public DataResult<MilitaryStatu> getById(int id) {
+		return new SuccessDataResult<MilitaryStatu>(this.militaryStatuDao.getById(id), "data listelendi.");
+}
 }

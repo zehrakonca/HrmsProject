@@ -45,6 +45,11 @@ public class PositionLevelManager implements PositionLevelService{
 		this.positionLevelDao.deleteById(positionLevelId);
 		return new SuccessResult("İş pozisyon derecesi silindi.");
 	}
+
+	@Override
+	public DataResult<PositionLevel> getById(int id) {
+		return new SuccessDataResult<PositionLevel>(this.positionLevelDao.getById(id), "data listelendi.");
+	}
 	
 	
 }

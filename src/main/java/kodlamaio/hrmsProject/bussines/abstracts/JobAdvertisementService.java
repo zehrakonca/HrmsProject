@@ -7,22 +7,21 @@ import kodlamaio.hrmsProject.core.utilities.results.Result;
 import kodlamaio.hrmsProject.entities.concretes.JobAdvertisement;
 
 
-public interface JobAdvertisementService {
-	Result add (JobAdvertisement jobAdvertisement);
+public interface JobAdvertisementService extends BaseEntitiyService<JobAdvertisement>{
 	
-	Result update(JobAdvertisement jobAdvertisement);
-
-	Result delete(int advertisementId);
+	Result confirm(int advertisementId,int employerId, int systemEmployeeId, boolean isConfirmed);
 	
-	Result updateStatu(int advertisementId);
+	Result makeActiveOrPassive(int advertisementId, boolean isActive);
 	
 	DataResult<List<JobAdvertisement>> getByCompanyName(String companyName);
 	
-	DataResult<List<JobAdvertisement>> getStatuIdIsTrue();
+	DataResult<List<JobAdvertisement>> getAllByIsActive(boolean isActive);
+
+	DataResult<List<JobAdvertisement>> getAllByIsActiveFalse(boolean isActive);
 	
 	DataResult<List<JobAdvertisement>> getJobAdvertisementDetailSorted();
 	
-	DataResult<List<JobAdvertisement>> getAll();
+	DataResult<List<JobAdvertisement>> getAllWaitingConfirmation();
 	
 	DataResult<JobAdvertisement> getByAdvertisementId(int advertisementId);
 	

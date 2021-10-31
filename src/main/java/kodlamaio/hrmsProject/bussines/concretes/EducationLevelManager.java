@@ -46,5 +46,10 @@ public class EducationLevelManager implements EducationLevelService{
 	public DataResult<List<EducationLevel>> getAll() {
 		return new SuccessDataResult<List<EducationLevel>>(this.educationLevelDao.findAll(),"data listelendi.");
 	}
+
+	@Override
+	public DataResult<EducationLevel> getById(int id) {
+		return new SuccessDataResult<EducationLevel>(this.educationLevelDao.getById(id),"data listelendi.");
+	}
 	
 }

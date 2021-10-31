@@ -1,6 +1,6 @@
 package kodlamaio.hrmsProject.entities.concretes;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -56,18 +51,14 @@ public class JobAdvertisement {
 	@Column(name="job_salary")
 	private int jobSalary;
 	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-mm-dd")
 	@Column(name="release_date")
-	private Date releaseDate;
+	private LocalDate releaseDate;
 	
-	@Temporal(TemporalType.DATE)
-	@JsonFormat(pattern = "yyyy-mm-dd")
 	@Column(name="application_date")
-	private Date applicationDate;
+	private LocalDate applicationDate;
 	
-	@Column(name="statu_id")
-	private int statuId;
+	@Column(name="is_active")
+	private boolean isActive;
 	
 	@ManyToOne()
 	@JoinColumn(name="employer_id")
@@ -87,7 +78,7 @@ public class JobAdvertisement {
 	
 	@ManyToOne
 	@JoinColumn(name="military_statu_id")
-	private MilitaryStatus militaryStatus;
+	private MilitaryStatu militaryStatu;
 
 	@ManyToOne
 	@JoinColumn(name="work_type_id")

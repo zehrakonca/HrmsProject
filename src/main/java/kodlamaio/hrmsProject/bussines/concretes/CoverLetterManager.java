@@ -56,7 +56,4 @@ public class CoverLetterManager  implements CoverLetterService{
 	public DataResult<List<CoverLetter>> getAll() {
 		return new SuccessDataResult<List<CoverLetter>>(this.coverLetterDao.findAll());
 	}
-
-	
-
 }
